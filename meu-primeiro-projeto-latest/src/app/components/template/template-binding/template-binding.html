@@ -5,3 +5,11 @@
 <button [disabled]="isDisable">button</button>
 
 <p [ariaLabel]="name">{{ name }}</p>
+
+<button (click)="addPlus()" >Adicionar asteristicos</button>
+{{ plus }}
+
+<div style="height: 300px; width: 300px; background-color: black; cursor: pointer;" (mousemove)="position($event)">a</div>
+{{ valueXandY }}
+
+<input type="text">
