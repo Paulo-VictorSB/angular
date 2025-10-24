@@ -2,3 +2,15 @@
 <h3>IF</h3>
 
 @if(isTrue) { Sim, 1 é igual a 1 } @else { Não está correto. }
+
+<hr>
+
+<h3>FOR</h3>
+
+@if (loadingData$ | async; as data) {
+  <ul>
+    @for (item of data; track item) {
+      <li>{{ item }}</li>
+    }
+  </ul>
+} @else { <p>Carregando..</p> }
