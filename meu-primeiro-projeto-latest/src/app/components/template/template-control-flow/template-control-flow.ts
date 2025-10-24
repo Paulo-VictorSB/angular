@@ -9,11 +9,15 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './template-control-flow.scss',
 })
 export class TemplateControlFlow {
-  public isTrue: Boolean = true;
+  public isTrue: Boolean = true; 
 
-  public loadingData$: Observable<string[]> = of ([
+  public itens = [{ name: 'Paulo Victor' }];
+  public loadingData$: Observable<string[]> = of([
     'item 1',
     'item 2',
     'item 3',
   ]).pipe(delay(3000));
+  public addNewName(name: string){
+    return this.itens.push({name: name});
+  }
 }
