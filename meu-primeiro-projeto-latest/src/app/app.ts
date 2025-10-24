@@ -1,14 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TemplateVariables } from './components/template/template-variables/template-variables';
+import { TemplateControlFlow } from './components/template/template-control-flow/template-control-flow';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TemplateVariables],
+  imports: [RouterOutlet, TemplateControlFlow],
   template: `
     <router-outlet />
     <h1>Curso de Angular</h1>
-    <app-template-variables />
+    <app-template-control-flow />
   `
 })
 export class App {
