@@ -8,30 +8,54 @@
 <h3>FOR</h3>
 
 @if (loadingData$ | async; as data) {
-  <ul>
-    @for (item of data; track item) {
-      <li>{{ item }}</li>
-    }
-  </ul>
+<ul>
+  @for (item of data; track item) {
+  <li>{{ item }}</li>
+  }
+</ul>
 } @else { <p>Carregando..</p> }
 
 @for(
-  item of itens; track item.name;
-  let i = $index;
-  let c = $count;
-  let f = $first;
-  let l = $last;
-  let e = $even;
-  let o = $odd;
+item of itens; track item.name;
+let i = $index;
+let c = $count;
+let f = $first;
+let l = $last;
+let e = $even;
+let o = $odd;
 ) {
-  <p>{{ item.name }}</p>
-  <p>index - {{ i }}</p>
-  <p>count - {{ c }}</p>
-  <p>first - {{ f }}</p>
-  <p>last - {{ l }}</p>
-  <p>even - {{ e }}</p>
-  <p>odd - {{ o }}</p>
+<p>{{ item.name }}</p>
+<p>index - {{ i }}</p>
+<p>count - {{ c }}</p>
+<p>first - {{ f }}</p>
+<p>last - {{ l }}</p>
+<p>even - {{ e }}</p>
+<p>odd - {{ o }}</p>
 }
 
 <input type="text" #name>
-<button (click)="addNewName(name.value)" >Adicionar novo nome.</button>
+<button (click)="addNewName(name.value)">Adicionar novo nome.</button>
+
+<hr>
+
+@for (item of itens; track item) {
+
+} @empty {
+<p>Não contém valor.</p>
+}
+
+<hr>
+
+@switch (switchCondicion) {
+  @case('A') {
+    <p>Letra {{ switchCondicion }}</p>
+  }
+
+  @case('B') {
+    <p>Letra {{ switchCondicion }}</p>
+  }
+
+  @default {
+    <p>Letra não encontrada.</p>
+  }
+}

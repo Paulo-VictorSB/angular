@@ -9,9 +9,10 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './template-control-flow.scss',
 })
 export class TemplateControlFlow {
-  public isTrue: Boolean = true; 
+  public isTrue: Boolean = true;
+  public switchCondicion: String = 'B'
 
-  public itens = [{ name: 'Paulo Victor' }];
+  public itens: Array<{ name: string }> = [];
   public loadingData$: Observable<string[]> = of([
     'item 1',
     'item 2',
