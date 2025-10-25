@@ -1,7 +1,8 @@
 <h2>Deferrable views</h2>
-@defer() {
+<button (click)="isTrue = true">Carregar dados</button>
+@defer(when isTrue) {
   <app-new-component />
-} @placeholder() {
+} @placeholder(minimum 5s) {
   <p>Antes de carregar algo..</p>
 } @loading() {
   <p>Carregando algo..</p>
