@@ -4,7 +4,7 @@
   <ul>
     @for(project of arrayProjects(); track project) {
     <li>
-      <button>
+      <button (click)="openDialog(project)">
         <img
           [src]="project.src"
           [alt]="project.alt"
