@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Projetos desenvolvidos</h2>
+
+  <ul>
+    @for(project of arrayProjects(); track project) {
+    <li>
+      <button>
+        <img
+          [src]="project.src"
+          [alt]="project.alt"
+          [attr.width]="project.width"
+          [attr.height]="project.height"
+          loading="lazy"
+        />
+      </button>
+    </li>
+    }
+  </ul>
+</div>
