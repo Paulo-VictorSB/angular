@@ -1,0 +1,11 @@
+<h2>Pipes</h2>
+<ul>
+  <li>Date: {{ date() | date:"yyyy/mm/dd" }}</li>
+  <li>uppecase: {{ "Paulo Victor" | uppercase }}</li>
+  <li>lowercase: {{ "Paulo Victor" | lowercase }}</li>
+  <li>json: {{ json() | json }}</li>
+  <li>currency: {{ 200.50 | currency : "BRL" }}</li>
+  <li>number: {{ 2000.50 | number : "1.2-2"}}</li>
+  <li>percent: {{ 0.41 | percent }}</li>
+</ul>
+

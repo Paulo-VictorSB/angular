@@ -1,17 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TemplateControlFlow } from './components/template/template-control-flow/template-control-flow';
-import { TemplateDeferrableViews } from './components/template/template-deferrable-views/template-deferrable-views';
-import { Signals } from './components/signals/signals';
+import { AngularPipes } from './components/pipes/angular-pipes/angular-pipes';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Signals],
+  imports: [RouterOutlet, AngularPipes],
   template: `
     <router-outlet />
     <h1>Curso de Angular</h1>
-    <app-signals />
+    <app-angular-pipes/>
   `
 })
 export class App {
