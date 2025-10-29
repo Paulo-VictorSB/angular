@@ -13,9 +13,28 @@
 } @else {
 <app-input-add-item [inputListItems]="getListItems()" (outputAddlistItem)="getInputAndAddItem($event)" />
 
-<main class="container"></main>
+<main class="container">
+  @if(listItemsStage('pending').length) {
+  <h2>Pendentes</h2>
+  <app-input-list-item
+    [inputListItems]="listItemsStage('pending')"
+    (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
+    (outputUpdateItemValue)="updateItemValue($event)"
+    (outputDeleteItem)="deleteItem($event)"
+  />
+  }
+
+  @if(listItemsStage('completed').length) {
+  <h2>Concluídas</h2>
+  <app-input-list-item
+    [inputListItems]="listItemsStage('completed')"
+    (outputUpdateItemCheckbox)="updateItemCheckbox($event)"
+    (outputDeleteItem)="deleteItem($event)"
+  />
+  }
+</main>
 
 <footer>
-  <button class="btn btn-danger">Deletar todos os itens</button>
+  <button class="btn btn-danger" (click)="deleteAllItems()">Deletar todos os itens</button>
 </footer>
 }
