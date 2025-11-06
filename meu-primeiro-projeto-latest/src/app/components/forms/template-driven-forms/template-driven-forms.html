@@ -1,0 +1,117 @@
+<h2>Template Driven Forms</h2>
+
+<form>
+  <label>
+    Name:
+    <input
+      type="text"
+      name="inputName"
+      #name="ngModel"
+      [ngModel] = "name.value"
+      required
+    />
+  </label>
+
+  <hr>
+  <p>Value: {{ name.value }}</p>
+  <p>Valid: {{ name.valid }}</p>
+  <p>Dirty: {{ name.dirty }}</p>
+  <p>touched: {{ name.touched }}</p>
+  <hr>
+
+  <label>
+    Feminino:
+    <input
+      type="radio"
+      value="feminino"
+      name="radioSexo"
+      #sexo="ngModel"
+      [ngModel] = "sexo.value"
+      required
+    />
+  </label>
+
+  <label>
+    Masculino:
+    <input
+      type="radio"
+      value="masculino"
+      name="radioSexo"
+      #sexo="ngModel"
+      [ngModel] = "sexo.value"
+      required
+    />
+  </label>
+
+  <label>
+    Outros:
+    <input
+      type="radio"
+      value="outros"
+      name="radioSexo"
+      #sexo="ngModel"
+      [ngModel] = "sexo.value"
+      required
+    />
+  </label>
+
+  <hr>
+  <p>Value: {{ sexo.value }}</p>
+  <p>Valid: {{ sexo.valid }}</p>
+  <p>Dirty: {{ sexo.dirty }}</p>
+  <p>touched: {{ sexo.touched }}</p>
+  <hr>
+
+  <label>
+    Angular:
+    <input
+      type="checkbox"
+      value="angular"
+      name="checkboxAngular"
+      #tecAngular="ngModel"
+      [ngModel] = "tecAngular.value"
+      required
+    />
+  </label>
+
+  <hr>
+  <p>Value: {{ tecAngular.value }}</p>
+  <p>Valid: {{ tecAngular.valid }}</p>
+  <p>Dirty: {{ tecAngular.dirty }}</p>
+  <p>touched: {{ tecAngular.touched }}</p>
+  <hr>
+
+  <label>
+    Vue:
+    <input
+      type="checkbox"
+      value="vue"
+      name="checkboxVue"
+      #tecVue="ngModel"
+      [ngModel] = "tecVue.value"
+      required
+    />
+  </label>
+
+  <hr>
+  <p>Value: {{ tecVue.value }}</p>
+  <p>Valid: {{ tecVue.valid }}</p>
+  <p>Dirty: {{ tecVue.dirty }}</p>
+  <p>touched: {{ tecVue.touched }}</p>
+  <hr>
+
+  <select
+    name="selectComidas"
+    #comidas="ngModel"
+    ngModel
+  >
+    <option value="" disabled>--Selecione um alimento</option>
+    @for (comida of listComidas(); track $index) {
+      <option [ngValue]="comida.preco">{{ comida.nome }}</option>
+    }
+  </select>
+
+  <hr>
+  {{ comidas.value }}
+  <hr>
+</form>
