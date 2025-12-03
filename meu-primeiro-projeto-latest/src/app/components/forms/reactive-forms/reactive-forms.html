@@ -3,9 +3,17 @@
 <form [formGroup]="profileForm">
   <label>
     Nome:
-    <input type="text" formControlName="name">
-    <p>Value: {{ profileForm.value.name }}</p>
+    <input type="text" formControlName="name" required>
   </label>
+
+  <hr>
+    <h3>[formGroup] = profileForm</h3>
+    <p>Value: {{ profileForm.value | json }}</p>
+  <hr>
+
+  <hr>
+    <h3>[formControlName] = name</h3>
+  <hr>
 
   <div formGroupName="myStacks">
     <label>
@@ -41,4 +49,6 @@
       </label>
     }
   </div>
+
+  <button [disabled]="!profileForm.valid">Submit</button>
 </form>
