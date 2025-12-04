@@ -5,62 +5,121 @@
         <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
           <h4 class="mb-0">Cadastro de Usuário</h4>
         </div>
-
         <div class="card-body p-4">
-          <form method="POST" enctype="multipart/form-data" [formGroup]="profileForm">
+          <form (ngSubmit)="onSubmit()" [formGroup]="profileForm" enctype="multipart/form-data">
             <!-- Dados Pessoais -->
-            <div formGroupName="personalData">
+            <div formGroupName="personal">
               <h5 class="fw-bold mb-3">Dados Pessoais</h5>
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">Nome Completo *</label>
-                  <input type="text" class="form-control" formControlName="name" required />
+                  <input type="text" class="form-control" formControlName="name" />
+                  @if (name?.touched && nameErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (nameErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('name', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Data de Nascimento *</label>
-                  <input type="date" class="form-control" formControlName="birthdate" required />
+                  <input type="date" class="form-control" formControlName="birthdate" />
+                  @if (birthdate?.touched && birthdateErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (birthdateErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('birthdate', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">CPF *</label>
-                  <input type="text" class="form-control" formControlName="cpf" placeholder="000.000.000-00" required />
+                  <input type="text" class="form-control" formControlName="cpf" mask="000.000.000.00" />
+                  @if (cpf?.touched && cpfErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (cpfErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('cpf', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Telefone *</label>
-                  <input type="text" class="form-control" formControlName="phone" placeholder="(00) 00000-0000"
-                    required />
+                  <input type="text" class="form-control" formControlName="phone" mask="(00) 00000-0000" />
+                  @if (phone?.touched && phoneErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (phoneErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('phone', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-12">
-                  <label class="form-label">Foto de Perfil</label>
-                  <input type="file" class="form-control" formControlName="imageProfile" accept="image/*" />
+                  <label class="form-label">Foto de Perfil (png/jpg/webp, máx 2MB)</label>
+                  <input type="file" class="form-control" accept="image/*" (change)="onFileChange($event)" />
+                  @if (imageProfile?.touched && imageProfileErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (imageProfileErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('imageProfile', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
               </div>
             </div>
-
             <hr class="my-4" />
-
             <!-- Endereço -->
             <div formGroupName="adress">
               <h5 class="fw-bold mb-3">Endereço</h5>
               <div class="row g-3">
                 <div class="col-md-8">
                   <label class="form-label">Rua *</label>
-                  <input type="text" class="form-control" formControlName="road" required />
+                  <input type="text" class="form-control" formControlName="road" />
+                  @if (road?.touched && roadErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (roadErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('road', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Número *</label>
-                  <input type="text" class="form-control" formControlName="number" required />
+                  <input type="text" class="form-control" formControlName="number" />
+                  @if (number?.touched && numberErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (numberErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('number', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Bairro *</label>
-                  <input type="text" class="form-control" formControlName="neighborhood" required />
+                  <input type="text" class="form-control" formControlName="neighborhood" />
+                  @if (neighborhood?.touched && neighborhoodErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (neighborhoodErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('neighborhood', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Cidade *</label>
-                  <input type="text" class="form-control" formControlName="city" required />
+                  <input type="text" class="form-control" formControlName="city" />
+                  @if (city?.touched && cityErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (cityErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('city', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Estado *</label>
-                  <select class="form-select" formControlName="state" required>
+                  <select class="form-select" formControlName="state">
                     <option value="">Selecione...</option>
                     <option>AC</option>
                     <option>AL</option>
@@ -90,47 +149,97 @@
                     <option>SE</option>
                     <option>TO</option>
                   </select>
+                  @if (state?.touched && stateErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (stateErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('state', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-8">
                   <label class="form-label">CEP *</label>
-                  <input type="text" class="form-control" placeholder="00000-000" formControlName="cep" required />
+                  <input type="text" class="form-control" formControlName="cep" mask="00000-000" placeholder="00000-000"
+                    [dropSpecialCharacters]="false" [validation]="true" />
+                  @if (cep?.touched && cepErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (cepErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('cep', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
               </div>
             </div>
-
             <hr class="my-4" />
-
             <!-- Login e Segurança -->
             <div formGroupName="login">
               <h5 class="fw-bold mb-3">Login e Segurança</h5>
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">E-mail *</label>
-                  <input type="email" formControlName="email" class="form-control" required />
+                  <input type="email" class="form-control" formControlName="email" />
+                  @if (email?.touched && emailErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (emailErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('email', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Confirmar E-mail *</label>
-                  <input type="email" formControlName="confirmEmail" class="form-control" required />
+                  <input type="email" class="form-control" formControlName="confirmEmail" />
+                  @if (confirmEmail?.touched && confirmEmailErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (confirmEmailErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('confirmEmail', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
+                <!-- group-level email mismatch -->
+                @if (login?.touched && loginErrors) {
+                @if (loginErrors['emailMismatch']) {
+                <div class="col-12 text-danger mt-1">Os e-mails não conferem.</div>
+                }
+                }
                 <div class="col-md-6">
                   <label class="form-label">Senha *</label>
-                  <input type="password" formControlName="password" class="form-control" required />
+                  <input type="password" class="form-control" formControlName="password" />
+                  @if (password?.touched && passwordErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (passwordErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('password', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Confirmar Senha *</label>
-                  <input type="password" formControlName="confirmPassword" class="form-control" required />
+                  <input type="password" class="form-control" formControlName="confirmPassword" />
+                  @if (confirmPassword?.touched && confirmPasswordErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (confirmPasswordErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('confirmPassword', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
+                @if (login?.touched && loginErrors) {
+                @if (loginErrors['passwordMismatch']) {
+                <div class="col-12 text-danger mt-1">As senhas não conferem.</div>
+                }
+                }
               </div>
             </div>
-
             <hr class="my-4" />
-
             <!-- Preferências -->
             <div formGroupName="preferences">
               <h5 class="fw-bold mb-3">Preferências</h5>
               <div class="row g-3">
                 <div class="col-md-6">
-                  <label class="form-label">Cargo / Função</label>
+                  <label class="form-label">Cargo / Função *</label>
                   <select class="form-select" formControlName="position">
                     <option value="">Selecione...</option>
                     <option>Administrador</option>
@@ -138,25 +247,45 @@
                     <option>Usuário Comum</option>
                     <option>Convidado</option>
                   </select>
+                  @if (position?.touched && positionErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (positionErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('position', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-md-6">
-                  <label class="form-label">Status da Conta</label>
+                  <label class="form-label">Status da Conta *</label>
                   <select class="form-select" formControlName="status">
                     <option value="">Selecione...</option>
                     <option>Ativo</option>
                     <option>Inativo</option>
                   </select>
+                  @if (status?.touched && statusErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (statusErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('status', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
                 <div class="col-12">
                   <label class="form-label">Observações</label>
-                  <textarea class="form-control" rows="3" placeholder="Algum detalhe adicional..."
-                    formControlName="observations"></textarea>
+                  <textarea class="form-control" rows="3" formControlName="observations"
+                    placeholder="Algum detalhe adicional..."></textarea>
+                  @if (observations?.touched && observationsErrors) {
+                  <div class="text-danger mt-1">
+                    @for (err of (observationsErrors | keyvalue); track err.key) {
+                    <div>{{ getErrorMessage('observations', err.key, err.value) }}</div>
+                    }
+                  </div>
+                  }
                 </div>
               </div>
             </div>
-
             <div class="mt-4 text-end">
-              <button type="reset" class="btn btn-secondary px-4 me-2">Limpar</button>
+              <button type="reset" class="btn btn-secondary px-4 me-2" (click)="profileForm.reset()">Limpar</button>
               <button type="submit" class="btn btn-primary px-4">Cadastrar</button>
             </div>
           </form>
@@ -165,5 +294,4 @@
     </div>
   </div>
 </div>
-
 <router-outlet />
